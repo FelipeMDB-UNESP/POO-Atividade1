@@ -12,7 +12,7 @@ public class Professor extends Usuario{
     private long matricula;
     
     //Constructor 
-    public Professor(long matricula, String nome, long cpf, long telefone, String endereco) {
+    public Professor(long matricula, String nome, String cpf, String telefone, String endereco) {
         
         super.setNome(nome);
         super.setCpf(cpf);
@@ -21,7 +21,6 @@ public class Professor extends Usuario{
         
         this.matricula = matricula; 
     }
-    
     
     //getters and setters
     public long getMatricula() {

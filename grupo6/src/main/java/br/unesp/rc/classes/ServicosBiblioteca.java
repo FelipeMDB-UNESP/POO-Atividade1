@@ -4,6 +4,10 @@
  */
 package br.unesp.rc.classes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -12,33 +16,62 @@ import java.util.Date;
  */
 public class ServicosBiblioteca {
     
-    public static void registrarEmprestimo(Emprestimo emprestimo, String nomeUsuario){
+    public static Emprestimo registrarEmprestimo(Aluno aluno, ArrayList<Livro> livros){
         
-        System.out.println("Um novo emprestimo foi gerado para:" + nomeUsuario + "de id:" + emprestimo.getIdCliente());
+        Date hoje = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(hoje);
+        c.add(Calendar.DATE, 9);
+        Date devolucao = c.getTime();
+        Emprestimo emprestimo = new Emprestimo(aluno.getRegistroAcademico(), hoje, devolucao, livros);
+        
+        System.out.println("Um novo emprestimo foi gerado para o aluno: " + aluno.getNome() + " de Registro Acadêmico: " + aluno.getRegistroAcademico());
         System.out.println("Os seguintes livros foram emprestados: ");
         for(Livro l : emprestimo.livrosEmprestados){
             System.out.println(Long.toString(l.getId()) + ":" + l.getTitulo());
         }
         System.out.println("Data do empréstimo: " + emprestimo.getDataRetirada());
         System.out.println("Data da devolução: " + emprestimo.getDataDevolucao());
+        
+        return emprestimo;
     }
     
-    public static void devolverEmprestimo(Emprestimo emprestimo, String nomeUsuario){
+    public static Emprestimo registrarEmprestimo(Professor professor, ArrayList<Livro> livros){
+        
+        Date hoje = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(hoje);
+        c.add(Calendar.DATE, 9);
+        Date devolucao = c.getTime();
+        Emprestimo emprestimo = new Emprestimo(professor.getMatricula(), hoje, devolucao, livros);
+        
+        System.out.println("Um novo emprestimo foi gerado para o professor: " + professor.getNome() + " de Matrícula:" + professor.getMatricula());
+        System.out.println("Os seguintes livros foram emprestados: ");
+        for(Livro l : emprestimo.livrosEmprestados){
+            System.out.println(Long.toString(l.getId()) + ":" + l.getTitulo());
+        }
+        System.out.println("Data do empréstimo: " + emprestimo.getDataRetirada());
+        System.out.println("Data da devolução: " + emprestimo.getDataDevolucao());
+        
+        return emprestimo;
+    }
+    
+    public static void registrarDevolucao(Emprestimo emprestimo){
         System.out.println("Os seguintes livros foram devolvidos: ");
         for(Livro l : emprestimo.livrosEmprestados){
             System.out.println(Long.toString(l.getId()) + ":" + l.getTitulo());
         }
         
-        if(houveAtraso(emprestimo) > 0){
-            System.out.println("O usuário " + nomeUsuario + "deverá pagar o valor de R$" + houveAtraso(emprestimo));
+        if(precoDeAtraso(emprestimo) > 0){
+            System.out.println("Devolução ATRASADA, o usuário de id " + emprestimo.getIdCliente() + " deverá pagar o valor de R$" + precoDeAtraso(emprestimo));
         }
         else{
-            System.out.println("O usuário " + nomeUsuario + "fez a devolução dentro da data prevista");
+            System.out.println("O usuário de id " + emprestimo.getIdCliente() + " fez a devolução dentro da data prevista, taxa não será cobrada");
         }
         System.out.println("Emissão do comprovante de devolução");
     }
     
-    public static int houveAtraso(Emprestimo emprestimo){
+    private static int precoDeAtraso(Emprestimo emprestimo){
         
         Date hoje = new Date(); // captura a data de hoje
         if(emprestimo.dataDevolucao.compareTo(hoje) < 0 ){ // se < 0 dataDevolucao ocorre antes da data atual
@@ -46,5 +79,4 @@ public class ServicosBiblioteca {
         }
         return 0;
     }
-    
 }

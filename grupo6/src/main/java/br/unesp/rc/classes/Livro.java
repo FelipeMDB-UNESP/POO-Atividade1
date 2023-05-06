@@ -12,11 +12,11 @@ public class Livro {
     
     private String titulo;
     private String autor;
-    private int anoPublicacao;
+    private String anoPublicacao;
     private String editora;
     private long id;
     // Construtor
-    public Livro(String titulo, String autor, int anoPublicacao, String editora, long id) {
+    public Livro(String titulo, String autor, String anoPublicacao, String editora, long id) {
         this.titulo = titulo;
         this.autor = autor;
         this.anoPublicacao = anoPublicacao;
@@ -45,11 +45,11 @@ public class Livro {
         this.autor = autor;
     }
 
-    public int getAnoPublicacao() {
+    public String getAnoPublicacao() {
         return anoPublicacao;
     }
 
-    public void setAnoPublicacao(int anoPublicacao) {
+    public void setAnoPublicacao(String anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
     }
 

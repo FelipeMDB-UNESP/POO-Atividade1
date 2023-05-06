@@ -11,7 +11,7 @@ package br.unesp.rc.classes;
 public class Aluno extends Usuario{
     private int registroAcademico;
 
-    public Aluno(int registroAcademico, String nome, long cpf, long telefone, String endereco) {
+    public Aluno(int registroAcademico, String nome, String cpf, String telefone, String endereco) {
         
         super.setNome(nome);
         super.setCpf(cpf);
@@ -19,10 +19,7 @@ public class Aluno extends Usuario{
         super.setEndereco(endereco);
         
         this.registroAcademico = registroAcademico;
-        
     }
-    
-    
     
     //Getters and Setters
     public int getRegistroAcademico() {
@@ -32,8 +29,5 @@ public class Aluno extends Usuario{
     public void setRegistroAcademico(int registroAcademico) {
         this.registroAcademico = registroAcademico;
     }
-    
-    
-    
     
 }

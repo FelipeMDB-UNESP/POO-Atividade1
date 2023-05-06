@@ -9,13 +9,12 @@ package br.unesp.rc.classes;
  * @author aluno
  */
 public class Usuario {
+
     private String nome;
-    private long cpf;
-    private long telefone; 
+    private String cpf;
+    private String telefone; 
     private String endereco;
     
-    
-    //getters and setters
     public String getNome() {
         return nome;
     }
@@ -24,19 +23,19 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public long getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(long telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -47,6 +46,5 @@ public class Usuario {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
     
 }
